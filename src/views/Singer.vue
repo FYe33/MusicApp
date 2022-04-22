@@ -5,13 +5,23 @@
       @select="selectdSinger"
     >
     </IndexList>
-    <router-view :singer="selectedSinger"></router-view>
+
+    <!-- 路由过渡动画 -->
+    <router-view v-slot="{ Component }">
+      <transition appear name="slide">
+        <component :is="Component" :singer="selectedSinger" />
+      </transition>
+    </router-view>
   </div>
 </template>
 
 <script>
 import { getSingerList } from '@/service/singer'
 import IndexList from '@/components/base/index-list/index-list'
+
+import storage from 'good-storage'
+import { SINGER_KEY } from '@/assets/js/constant'
+
 export default {
   name: 'singer',
   components: {
@@ -30,9 +40,13 @@ export default {
   methods: {
     selectdSinger (singer) {
       this.selectedSinger = singer
+      this.cacheSinger(singer)
       this.$router.push({
         path: `/Singer/${singer.mid}`
       })
+    },
+    cacheSinger (singer) {
+      storage.session.set(SINGER_KEY, singer)
     }
   }
 }
