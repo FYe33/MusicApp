@@ -13,7 +13,7 @@ export default function createLoadingLikeDirective (Comp) {
       // 将组件实例添加到动态创建的 div 元素中
       const instance = app.mount(document.createElement('div'))
 
-      // 防止其他instanc覆盖之前保存的instance
+      // 防止其他instance覆盖之前保存的instance
       const name = Comp.name
       if (!el[name]) {
         el[name] = {}
