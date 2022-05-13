@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="search-result" v-show="query">
-      <suggest :query="query"></suggest>
+      <Suggest :query="query"></Suggest>
     </div>
   </div>
 </template>
@@ -44,8 +44,8 @@ export default {
       hotKeys.value = result.hotKeys
     })
 
-    function addQuery (key) {
-      query.value = key
+    function addQuery (s) {
+      query.value = s
     }
 
     return {

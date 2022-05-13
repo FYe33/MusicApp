@@ -1,5 +1,5 @@
-import { PLAY_MODE, FAVORITE_KEY } from '@/assets/js/constant'
-import { load } from '@/assets/js/array-store'
+import { PLAY_MODE } from '@/assets/js/constant'
+
 const state = {
   sequenceList: [],
   playlist: [],
@@ -7,7 +7,8 @@ const state = {
   playMode: PLAY_MODE.sequence,
   currentIndex: 0,
   fullScrren: false,
-  favoriteList: load(FAVORITE_KEY)
+  favoriteList: [],
+  playHistory: []
 }
 
 export default state

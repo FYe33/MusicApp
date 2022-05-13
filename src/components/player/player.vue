@@ -123,6 +123,7 @@ import Scroll from '@/components/base/scroll/scroll'
 import MiniPlayer from './mini-player'
 import useFavorite from './use-favorite'
 import useMode from './use-mode'
+import usePlayHistory from './use-play-history'
 import useCd from './use-cd'
 import useLyric from './use-lyric'
 import useMiddleInteractive from './use-middle-interactive'
@@ -182,6 +183,7 @@ export default {
       leave,
       afterLeave
     } = useAnimation()
+    const { savePlay } = usePlayHistory()
 
     // computed
     const playIcon = computed(() => {
@@ -288,6 +290,7 @@ export default {
 
       songReady.value = true
       playLyric()
+      savePlay(currentSong.value)
     }
 
     function error () {

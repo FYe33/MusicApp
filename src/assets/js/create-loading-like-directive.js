@@ -32,6 +32,11 @@ export default function createLoadingLikeDirective (Comp) {
 
     // 当是否绑定的判断改变时
     updated (el, binding) {
+      const title = binding.arg
+      const name = Comp.name
+      if (typeof title !== 'undefined') {
+        el[name].instance.setTitle(title)
+      }
       if (binding.value !== binding.oldValue) {
         binding.value ? append(el) : remove(el)
       }

@@ -1,11 +1,4 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Recommend from '@/views/Recommend'
-import Singer from '@/views/Singer'
-import TopList from '@/views/TopList'
-import Search from '@/views/Search'
-import SingerDetail from '@/views/SingerDetail'
-import Album from '@/views/Album'
-import TopDetail from '@/views/TopDetail'
 
 const routes = [
   {
@@ -14,37 +7,43 @@ const routes = [
   },
   {
     path: '/Recommend',
-    component: Recommend,
+    component: () => import('@/views/Recommend'),
     children: [
       {
         path: ':id',
-        component: Album
+        component: () => import('@/views/Album')
       }
     ]
   },
   {
     path: '/Singer',
-    component: Singer,
+    component: () => import('@/views/Singer'),
     children: [
       {
         path: ':id',
-        component: SingerDetail
+        component: () => import('@/views/SingerDetail')
       }
     ]
   },
   {
     path: '/TopList',
-    component: TopList,
+    component: () => import('@/views/TopList'),
     children: [
       {
         path: ':id',
-        component: TopDetail
+        component: () => import('@/views/TopDetail')
       }
     ]
   },
   {
     path: '/Search',
-    component: Search
+    component: () => import('@/views/Search')
+  },
+  {
+    path: '/user',
+    components: {
+      user: () => import('@/views/user-center')
+    }
   }
 ]
 

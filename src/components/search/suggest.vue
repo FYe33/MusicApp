@@ -55,7 +55,7 @@ export default {
     const loadingText = ref('')
 
     // 直接监听props中的query参数不可行(props中参数不是响应式数据)，需要利用到getter函数返回
-    watch(() => props.query, async newQuery => {
+    watch(() => props.query, async (newQuery) => {
       if (!newQuery) { return }
       await searchFirst()
     })
@@ -68,7 +68,6 @@ export default {
       hasMore.value = true
 
       const result = await search(props.query, page.value, props.showSinger)
-
       songs.value = await processSongs(result.songs)
       singer.value = result.singer
       hasMore.value = result.hasMore
